@@ -1,0 +1,64 @@
+server.port = 8085
+security.user.name = ajay
+security.user.name = ajay@123
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
+spring.message.basename = messages
+spring.application.name = student-app
+spring.datasource.url=jdbc:postgresql://localhost/studentDB
+spring.datasource.username=postgres
+spring.datasource.password=sai@123
+#spring.datasource.password=root
+spring.datasource.driver-class-name=org.postgresql.Driver
+##change below for token validation url (user service)
+#spring.jpa.hibernate.ddl-auto=create
+spring.jpa.hibernate.ddl-auto=update
+
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQL9Dialect
+# Postgres hibernate bug : https://hibernate.atlassian.net/browse/HHH-12368
+spring.jpa.properties.hibernate.temp.use_jdbc_metadata_defaults = false
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+spring.jpa.properties.hibernate.show_sql=true
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.properties.hibernate.use_sql=true
+spring.jackson.serialization.fail-on-empty-beans=false
+#spring.liquibase.change-log=classpath:db/changelog/db.changelog-master.xml
+
+logging.level.org.hibernate.type=TRACE
+
+spring.messages.basename=messages
+spring.messages.encoding=UTF-8
+# Jersey config
+
+
+# Hikari will use the above plus the following to setup connection pooling
+spring.datasource.hikari.minimumIdle=5
+spring.datasource.hikari.maxi  mumPoolSize=20
+spring.datasource.hikari.idleTimeout=30000
+spring.datasource.hikari.poolName=SpringBootJPAHikariCP
+spring.datasource.hikari.maxLifetime=2000000
+spring.datasource.hikari.connectionTimeout=30000
+# Without below HikariCP uses deprecated com.zaxxer.hikari.hibernate.HikariConnectionProvider
+# Surprisingly enough below ConnectionProvider is in hibernate-hikaricp dependency and not hibernate-core
+# So you need to pull that dependency but, make sure to exclude it's transitive dependencies or you will end up 
+# with different versions of hibernate-core 
+#spring.jpa.hibernate.connection.provider_class=org.hibernate.hikaricp.internal.HikariCPConnectionProvider
+
+
+
+#Actuator enabling
+management.endpoints.web.exposure.include=*
+
+
+#Hibernate Jpa Naming Stratergy
+spring.jpa.hibernate.naming.physical-strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+#
+#server.ssl.key-store=auxi.p12
+###server.ssl.key-store-password={cipher}2e3a7ac162f563f82821cb0cdfe366e1a80e2da93f81122c4d0b9ba1788b79a4
+#server.ssl.key-store-password=password
+#server.ssl.keyStoreType=PKCS12
+##server.ssl.keyAlias=noauthservice
+
+#Loggin
+logging.level.org.hibernate.SQL= error
+
+#logging.level.org.springframework = debug
